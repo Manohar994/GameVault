@@ -19,8 +19,7 @@ Switches the working directory to the feature branch.
 git switch main
 Switches the working directory back to the main branch.
 
-git merge feature
-Merges the changes from feature into the currently checked-out branch.
+
 
 git log --oneline --graph --decorate --all
 Displays a compact commit history with branch and merge relationships.
@@ -45,3 +44,40 @@ Pushes the main branch to GitHub and sets its upstream tracking branch.
 
 git push -u origin feature
 Pushes the feature branch to GitHub and sets its upstream tracking branch.
+
+
+git fetch origin
+Downloads the latest branch and commit information from the remote repository without changing the working files.
+
+git ls-remote --heads origin
+Lists the branches currently available on the remote GitHub repository and their commit hashes.
+
+git status -sb
+Displays the current branch, upstream tracking status, and a short summary of working-tree changes.
+
+git branch -a
+Lists local branches and remote-tracking branches.
+
+git diff --name-status main origin/main
+Shows which files differ between the local main branch and the remote main branch.
+
+git rev-list --left-right --count main...origin/main
+Compares the number of commits that exist only on the local branch and only on the remote branch.
+
+git merge-base --is-ancestor origin/main main
+Checks whether the remote main history is already included in the local main branch.
+
+git merge --no-ff feature -m "Merge feature branch into main"
+Merges the feature branch into main and creates a separate merge commit.
+
+git merge --allow-unrelated-histories -s ours origin/main -m "Merge existing GitHub history"
+Connects the previously unrelated GitHub main history to the local main history while retaining the local project files.
+
+git merge --allow-unrelated-histories -s ours origin/feature -m "Merge existing GitHub feature history"
+Connects the previously unrelated remote feature history to the local feature history while retaining the local feature files.
+
+git show --stat <commit>
+Displays a commit's details and a summary of the files changed by that commit.
+
+
+
